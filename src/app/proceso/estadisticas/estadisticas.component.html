@@ -1,0 +1,184 @@
+<div class="row">
+    <div class="col-10">
+        <div class="card">
+            <div class="card-header">
+                Estadísticas para la <strong>Mejora Continua</strong>
+            </div>
+            <div class="card-body">
+              <p class="card-text">
+                Selecciona el evaluador, el año y el mes para visualizar los resultados de las encuestas de satisfaccion.
+              </p>
+                <div class="form-group row" *ngIf="evaluadores">
+                    <div class="col-md-6 ">
+                      <label for="evaluador">Evaluador:</label>
+                      <select
+                        id="evaluador"
+                        [ngModel]="evaluador"
+                        (ngModelChange)="onChangeEval($event)"
+                        class="form-control">
+                        <option [value]="item.id_evaluadores" *ngFor="let item of evaluadores">
+                          {{item.nombre_evaluador}}
+                        </option>
+                        <option value="10">TODOS LOS EVALUADORES</option>
+                     </select>
+                    </div>
+                </div>
+
+                <div class="form-group row" *ngIf="years">
+                    <div class="col-md-6 ">
+                      <label for="years">Año:</label>
+                      <select
+                        id="years"
+                        [ngModel]="year"
+                        (ngModelChange)="onChangeYear($event)"
+                        class="form-control">
+                        <option [value]="item.id" *ngFor="let item of years">
+                          {{item.texto}}
+                        </option>
+                     </select>
+                    </div>
+                </div>
+
+                <div class="form-group row" *ngIf="meses">
+                    <div class="col-md-6 ">
+                      <label for="years">Mes:</label>
+                      <select
+                        id="meses"
+                        [ngModel]="mes"
+                        (ngModelChange)="onChangeMes($event)"
+                        class="form-control">
+                        <option [value]="item.id" *ngFor="let item of meses">
+                          {{item.texto}}
+                        </option>
+                     </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-2" *ngIf="estadis">
+        <div class="card">
+            <div class="card-header">
+                <strong>Número de procesos</strong>
+            </div>
+            <div class="card-body">
+                <div class="text-center">
+                    <h1 class="display-1 fw-bold">{{ estadis.length }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="row mt-4" *ngIf="estadis">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                Informe de resultados
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" class="col-4">Pregunta</th>
+                        <th scope="col">Puntuación</th>
+                        <th scope="col">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Las Instalaciones donde se realizó el proceso de evaluación así como la iluminación, ventilación, mobiliario, entre otras, las considera</td>
+                        <td>{{ proceso1 }} %</td>
+                        <td>{{ accionProceso1 }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>¿Le proporcionaron la información suficiente y necesaria para iniciar su proceso de evaluación?</td>
+                        <td>{{ proceso2 }} %</td>
+                        <td>{{ accionProceso2 }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>¿El taller de preparación impartido cumplió con sus expectativas?</td>
+                        <td>{{ proceso3 }} %</td>
+                        <td>{{ accionProceso3 }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">4</th>
+                        <td>¿Durante el proceso de evaluación le dieron trato digno y respetuoso?</td>
+                        <td>{{ proceso4 }} %</td>
+                        <td>{{ accionProceso4 }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <td>¿Le entregaron el certificado de acuerdo al compromiso establecido?</td>
+                        <td>{{ proceso5 }} %</td>
+                        <td>{{ accionProceso5 }}</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">6</th>
+                        <td>El precio de la certificación de competencia lo considera:</td>
+                        <td>{{ proceso6 }} %</td>
+                        <td>{{ accionProceso6 }}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                
+            </div>
+        </div> 
+    </div>
+    <div class="col-8 mt-4">
+        <div class="card">
+            <div class="card-header">
+                Informe del proceso de evaluación
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" class="col-4">Pregunta</th>
+                        <th scope="col">Puntuación</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>¿Le presentó y acordó con Usted el Plan de Evaluación?</td>
+                        <td>{{ evaluacion1 }} %</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>¿Recibió retroalimentación de los resultados de su evaluación?</td>
+                        <td>{{ evaluacion2 }} %</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>¿El evaluador atendió todas sus dudas?</td>
+                        <td>{{ evaluacion3 }} %</td>
+                      </tr>
+                    </tbody>
+                  </table>
+            </div>
+        </div>
+        
+    </div>
+    <div class="col-4 mt-4">
+        <div class="card">
+            <div class="card-header">
+                Acciones a seguir
+            </div>
+            <div class="card-body">
+                <h1>Total:  {{ totalEncuesta }} %</h1>
+                <div class="alert alert-info" role="alert">
+                    <p class="card-text">{{ accionesAseguir }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

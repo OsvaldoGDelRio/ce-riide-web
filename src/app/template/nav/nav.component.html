@@ -1,0 +1,19 @@
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a class="navbar-brand" href="#" routerLink="/">
+        <img src="/assets/img/riide-logo-60x60.png" width="60" height="60" alt="riide">
+      </a>
+      <a routerLink="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        <span class="fs-4"><a class="text-decoration-none">riide.org</a></span>
+      </a>
+      <ul class="nav nav-pills">
+        <li class="nav-item" *ngIf="isUserLoggedIn"><a routerLink="/proceso" class="nav-link">Procesos</a></li>
+        <li class="nav-item" *ngIf="isUserLoggedIn"><a routerLink="/proceso/certificados" class="nav-link">Certificados</a></li>
+        <li class="nav-item" *ngIf="isUserLoggedIn"><a routerLink="/proceso/generales" class="nav-link">Estadísticas</a></li>
+        <li class="nav-item" *ngIf="isUserLoggedIn"><a routerLink="/proceso/estadisticas" class="nav-link">Mejora continua</a></li>
+        <li class="nav-item" *ngIf="isUserLoggedIn"><a *ngIf="usuario" routerLink="/proceso/usuario" class="nav-link" >{{ usuario.email }}</a></li>
+        <li class="nav-item" *ngIf="isUserLoggedIn"><a routerLink="/" class="nav-link"  (click)="logout()">Salir</a></li>
+      </ul>
+    </header>
+</div>

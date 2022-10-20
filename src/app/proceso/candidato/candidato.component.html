@@ -1,0 +1,201 @@
+<div *ngIf="proceso" class="d-flex justify-content-between">
+    <h3 class="text-muted">Proceso - {{ proceso.folio }} - {{ proceso.nombre }}</h3>
+    <button type="button" routerLink="/proceso/index" class="btn btn-primaryt">Regresar</button>
+</div>
+<hr>
+<a *ngIf="proceso" href="#" [routerLink]="['/proceso/', 'edit', proceso.id  ]"  class="btn btn-primary mx-3">Editar información</a>
+<a *ngIf="proceso" href="#" [routerLink]="['/proceso/', 'editencuesta', proceso.id  ]"  class="btn btn-primary mx-3">Editar encuesta</a>
+<button *ngIf="documentos" type="button" (click)="downloadAllFile(proceso.folio)" class="btn btn-primary mx-3">Descargar todo</button>
+<div *ngIf="encuesta" class="row">
+    <div class="col-12">
+        <div class="card mt-4">
+        <div class="card-body">
+            <p>Fecha de evaluación: <strong>{{ proceso.fecha_eval | date:'d-L-Y' }}</strong></p>
+            <p>Evaluador: <strong>{{ proceso.nombre_evaluador }}</strong> - {{ proceso.clave_evaluador }} </p> 
+            <p>Juicio: <strong>{{ proceso.tipo_juicio }} </strong></p> 
+            <p>Dictamen: <strong>{{ proceso.tipo_dictamen }} </strong></p> 
+            <p>Estado: <strong>{{ proceso.tipo_estado }} </strong></p> 
+            <p>EC: <strong>{{ proceso.clave_estandar }}</strong> {{ proceso.nombre_estandar }} </p> 
+    
+        </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card mt-4">
+            <div class="card-header">Aseguramiento de la calidad</div>
+            <div class="card-body">
+                <p>Fecha de recepción de certificado: <strong>{{ proceso.fecha_recep | date:'d-L-Y' }}</strong></p> 
+                <p>Fecha de entrega de certificado: <strong>{{ proceso.fecha_entre | date:'d-L-Y' }}</strong></p> 
+                <hr>
+                <h1>{{ diasDeEntrega2 }} <span class="h6 text-muted">días transcurridos entre la evaluación y la entrega</span></h1>
+                <hr>
+                <h1>{{ diasDeEntrega }} <span class="h6 text-muted">días transcurridos entre la repecepción y la entrega</span></h1>
+                <hr>
+                <p>Evaluación del proceso de certificación:</p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th>Pregunta</th>
+                            <th>Puntaje</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Instalaciones</td>
+                            <td>{{ encuesta.proceso1 }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Información</td>
+                            <td>{{ encuesta.proceso2 }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Capacitación</td>
+                            <td>{{ encuesta.proceso3 }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Trato</td>
+                            <td>{{ encuesta.proceso4 }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>Entrega de certificado</td>
+                            <td>{{ encuesta.proceso5 }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td>Precio</td>
+                            <td>{{ encuesta.proceso6 }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                <p>Evaluación del evaluador:</p>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th>Pregunta</th>
+                            <th>Puntaje</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Plan de evaluación</td>
+                            <td>{{ encuesta.evaluacion1 }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Retroalimentación</td>
+                            <td>{{ encuesta.evaluacion2 }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Atención dudas</td>
+                            <td>{{ encuesta.evaluacion3 }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card mt-4">
+            <div class="card-header">
+                Resultados de la encuesta y acciones
+            </div>
+            <div class="card-body">
+                <p>Evaluación del proceso de certificación:</p>
+                <ol class="list-group list-group-flush">
+                    <li class="list-group-item list-group-item-info">1. {{ encuesta.proceso1 * 25 }} % - {{ accionProceso1 }}</li>
+                    <li class="list-group-item list-group-item-info">2. {{ encuesta.proceso2 * 25 }} % - {{ accionProceso2 }}</li>
+                    <li class="list-group-item list-group-item-info">3. {{ encuesta.proceso3 * 25 }} % - {{ accionProceso3 }}</li>
+                    <li class="list-group-item list-group-item-info">4. {{ encuesta.proceso4 * 25 }} % - {{ accionProceso4 }}</li>
+                    <li class="list-group-item list-group-item-info">5. {{ encuesta.proceso5 * 25 }} % - {{ accionProceso5 }}</li>
+                    <li class="list-group-item list-group-item-info">6. {{ encuesta.proceso6 * 25 }} % - {{ accionProceso6 }}</li>
+                </ol>
+                <br>
+                <p>Evaluación del evaluador:</p>
+                <ol class="list-group list-group-flush">
+                    <li class="list-group-item">1. {{ encuesta.evaluacion1 * 25 }} % </li>
+                    <li class="list-group-item">2. {{ encuesta.evaluacion2 * 25 }} %</li>
+                    <li class="list-group-item">3. {{ encuesta.evaluacion3 * 25 }} %</li>
+                    <li class="list-group-item">Total: {{ totalEncuesta }} %</li>
+                    <li class="list-group-item list-group-item-info">{{ accionesAseguir }}</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card mt-4" *ngIf="documentos">
+    <div class="card-header">Documentos</div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th>Documento</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let doc of documentos">
+                        <th>{{doc.nombre}}</th>
+                        <th><button type="button" (click)="downloadFile(proceso.folio,doc.nombre)" class="btn btn-light">Descargar</button></th>
+                      </tr>
+                  </tbody>
+            </table>
+        </div> 
+    </div>
+</div>
+<div class="card mt-4" *ngIf="documentos">
+    <div class="card-header">Evidencias</div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th>Evidencias</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let doc of evidencias">
+                        <th>{{doc.nombre}}</th>
+                        <th><button type="button" (click)="downloadFileEvidencia(proceso.folio,doc.nombre)" class="btn btn-light">Descargar</button></th>
+                      </tr>
+                  </tbody>
+            </table>
+        </div> 
+    </div>
+</div>
+<div class="card mt-4" *ngIf="imagenes">
+    <div class="card-header">Fotografías</div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th>Fotografías</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let imagen of imagenes">
+                        <th>{{ imagen.nombre }}</th>
+                        <th><button type="button" (click)="downloadImage(proceso.folio,imagen.nombre)" class="btn btn-light">Ver</button></th>
+                      </tr>
+                  </tbody>
+            </table>
+        </div> 
+    </div>
+</div>
+

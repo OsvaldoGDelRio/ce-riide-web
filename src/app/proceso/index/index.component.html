@@ -1,0 +1,34 @@
+<section>
+    <div class="d-flex justify-content-between mb-3">
+      <h4>Procesos</h4>
+      <a routerLink="/proceso/create" class="btn btn-success">Registrar nuevo proceso</a>
+    </div>
+    <div class="table-responsive">
+    <table class="table table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Folio</th>
+        <th>Nombre</th>
+        <th>EC</th>
+        <th>Evaluación</th>
+        <th>Recepción</th>
+        <th>Entrega</th>
+        <th>Evaluador</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let proceso of procesos">
+        <td>{{ proceso.id }}</td>
+        <td>{{ proceso.folio }}</td>
+        <td><a class="text-decoration-none" href="#" [routerLink]="['/proceso/', 'candidato', proceso.id  ]">{{ proceso.nombre }}</a></td>
+        <td>{{ proceso.clave_estandar }}</td>
+        <td>{{ proceso.fecha_eval | date:'d-L-Y' }}</td>
+        <td>{{ proceso.fecha_recep | date:'d-L-Y' }}</td>
+        <td>{{ proceso.fecha_entre | date:'d-L-Y' }}</td>
+        <td>{{ proceso.nombre_evaluador }}</td>
+      </tr>
+      </tbody>
+    </table>
+    </div>
+ </section>

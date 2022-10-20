@@ -1,0 +1,171 @@
+<div *ngIf="proceso">
+    <div class="d-flex justify-content-between">
+      <h4>Editar datos de <small class="text-muted">{{ proceso.nombre }}</small></h4>
+      <button type="button" routerLink="/proceso/candidato/{{ proceso.id }}" class="btn btn-primaryt">Regresar</button>
+    </div>
+  <hr/>
+  <div class="row">
+    <div class="col-6">
+    <div class="card">
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <div class="form-group row">
+                <div class="col-md-12 ">
+                  <label for="title">Folio:</label>
+                  <input
+                    formControlName="folio"
+                    id="folio"
+                    type="text"
+                    class="form-control">
+                  <div *ngIf="f.folio.touched && f.folio.invalid" class="alert alert-danger">
+                      <div *ngIf="f.folio.errors?.required">*Name is required.</div>
+                      <div *ngIf="f.folio.errors?.pattern">*The folio must only contain letters.</div>
+                  </div>
+                </div>
+            </div>
+
+              <div class="form-group row">
+                  <div class="col-md-12 ">
+                    <label for="title">Nombre completo:</label>
+                    <input
+                      formControlName="nombre"
+                      id="nombre"
+                      type="text"
+                      class="form-control">
+                    <div *ngIf="f.nombre.touched && f.nombre.invalid" class="alert alert-danger">
+                        <div *ngIf="f.nombre.errors?.required">*Name is required.</div>
+                        <div *ngIf="f.nombre.errors?.pattern">*The nombre must only contain letters.</div>
+                    </div>
+                  </div>
+              </div>
+            
+
+              <div class="form-group row">
+                <div class="col-md-12 ">
+                  <label for="fecha_eval">Fecha de evaluación:</label>
+                  <input
+                    formControlName="fecha_eval"
+                    id="fecha_eval"
+                    type="date"
+                    class="form-control">
+                  <div *ngIf="f.fecha_eval.touched && f.fecha_eval.invalid" class="alert alert-danger">
+                      <div *ngIf="f.fecha_eval.errors?.required">*Fecha de evaluación is required.</div>
+                      <div *ngIf="f.fecha_eval.errors?.fecha_eval">*The fecha_eval must be a valid fecha_eval address.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-12 ">
+                  <label for="fecha_recep">Fecha de recepción del certificado:</label>
+                  <input
+                    formControlName="fecha_recep"
+                    id="fecha_recep"
+                    type="date"
+                    class="form-control">
+                  <div *ngIf="f.fecha_recep.touched && f.fecha_recep.invalid" class="alert alert-danger">
+                      <div *ngIf="f.fecha_recep.errors?.required">*Fecha de recepcion is required.</div>
+                      <div *ngIf="f.fecha_recep.errors?.fecha_recep">*The fecha_recep must be a valid fecha_recep address.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <div class="col-md-12 ">
+                  <label for="fecha_entre">Fecha de entrega del certificado:</label>
+                  <input
+                    formControlName="fecha_entre"
+                    id="fecha_entre"
+                    type="date"
+                    class="form-control">
+                  <div *ngIf="f.fecha_entre.touched && f.fecha_entre.invalid" class="alert alert-danger">
+                      <div *ngIf="f.fecha_entre.errors?.required">*Fecha de recepcion is required.</div>
+                      <div *ngIf="f.fecha_entre.errors?.fecha_entre">*The fecha_entre must be a valid fecha_entre address.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row" *ngIf="evaluadores">
+                <div class="col-md-12 ">
+                  <label for="evaluador">Evaluador:</label>
+                  <select
+                    formControlName="evaluador"
+                    id="evaluador"
+                    class="form-control">
+                    <option [value]="item.id_evaluadores" *ngFor="let item of evaluadores">
+                      {{item.nombre_evaluador}}
+                    </option>
+                  </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12 ">
+                  <label for="juicio">Juicio:</label>
+                  <select
+              
+                    formControlName="juicio"
+                    id="juicio"
+                    class="form-control">
+                    <option [value]="item.id_juicio" *ngFor="let item of juicio">
+                      {{item.tipo_juicio}}
+                    </option>
+                  </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12 ">
+                  <label for="dictamen">Dictamen:</label>
+                  <select
+              
+                    formControlName="dictamen"
+                    id="dictamen"
+                    class="form-control">
+                    <option [value]="item.id_dictamen" *ngFor="let item of dictamen">
+                      {{item.tipo_dictamen}}
+                    </option>
+                </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12 ">
+                  <label for="estado">Estado:</label>
+                  <select
+                
+                    formControlName="estado"
+                    id="estado"
+                    class="form-control">
+                    <option [value]="item.id_estado" *ngFor="let item of estado">
+                      {{item.tipo_estado}}
+                    </option>
+                </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-12 ">
+                  <label for="estandar">Estándar:</label>
+                  <select
+              
+                    formControlName="estandar"
+                    id="estandar"
+                    class="form-control">
+                    <option [value]="item.id_estandares" *ngFor="let item of estandar">
+                      {{ item.clave_estandar }}
+                    </option>
+                </select>
+                </div>
+            </div>
+            <div class="form-group row mt-4">
+                <div class="col-md-12">
+                    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Actualizar</button>
+                </div>
+            </div>
+          </form>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>

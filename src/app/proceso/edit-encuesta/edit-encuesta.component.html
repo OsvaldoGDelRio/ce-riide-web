@@ -1,0 +1,153 @@
+<div *ngIf="encuesta">
+    <div class="d-flex justify-content-between">
+      <h4><small class="text-muted">Editar encuesta de: {{ proceso.nombre }}</small></h4>
+      <button type="button" routerLink="/proceso/candidato/{{ proceso.id }}" class="btn btn-primaryt">Regresar</button>
+    </div>
+  <hr/>
+
+  <div class="row" *ngIf="encuesta">
+    <div class="col-12">
+    <div class="card">
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="submit()">
+            <h4 class="text-muted">Evaluación del proceso:</h4>
+            <div class="form-group row m-4" *ngIf="puntos">
+                <div class="col-md-12 ">
+                  <label for="proceso1">1 - Las Instalaciones donde se realizó el proceso de evaluación así como la iluminación, ventilación, mobiliario, entre otras, las considera</label>
+                  <select
+                    formControlName="proceso1"
+                    id="proceso1"
+                    class="form-control">
+                    <option [value]="item.puntos" *ngFor="let item of puntos">
+                      {{ item.texto }}
+                    </option>
+                  </select>
+                </div>
+            </div>
+
+            <div class="form-group row m-4" *ngIf="puntos">
+              <div class="col-md-12 ">
+                <label for="proceso2">2 - ¿Le proporcionaron la información suficiente y necesaria para iniciar su proceso de evaluación?</label>
+                <select
+                  formControlName="proceso2"
+                  id="proceso2"
+                  class="form-control">
+                  <option [value]="item.puntos" *ngFor="let item of puntos">
+                    {{ item.texto }}
+                  </option>
+                </select>
+              </div>
+          </div>
+
+          <div class="form-group row m-4" *ngIf="puntos">
+            <div class="col-md-12 ">
+              <label for="proceso3">3 - ¿El taller de preparación impartido cumplió con sus expectativas?</label>
+              <select
+                formControlName="proceso3"
+                id="proceso3"
+                class="form-control">
+                <option [value]="item.puntos" *ngFor="let item of puntos">
+                  {{ item.texto }}
+                </option>
+              </select>
+            </div>
+        </div>
+
+        <div class="form-group row m-4" *ngIf="puntos">
+          <div class="col-md-12 ">
+            <label for="proceso4">4 - ¿Durante el proceso de evaluación le dieron trato digno y respetuoso?</label>
+            <select
+              formControlName="proceso4"
+              id="proceso4"
+              class="form-control">
+              <option [value]="item.puntos" *ngFor="let item of puntos">
+                {{ item.texto }}
+              </option>
+            </select>
+          </div>
+      </div>
+
+      <div class="form-group row m-4" *ngIf="puntos">
+        <div class="col-md-12 ">
+          <label for="proceso5">5 - ¿Le entregaron el certificado de acuerdo al compromiso establecido?</label>
+          <select
+            formControlName="proceso5"
+            id="proceso5"
+            class="form-control">
+            <option [value]="item.puntos" *ngFor="let item of puntos">
+              {{ item.texto }}
+            </option>
+          </select>
+        </div>
+    </div>
+
+    <div class="form-group row m-4" *ngIf="puntos">
+      <div class="col-md-12 ">
+        <label for="proceso6">6 - El precio de la certificación de competencia lo considera:</label>
+        <select
+          formControlName="proceso6"
+          id="proceso6"
+          class="form-control">
+          <option [value]="item.puntos" *ngFor="let item of puntos">
+                      {{ item.texto }}
+                    </option>
+        </select>
+      </div>
+    </div>
+  <h4 class="text-muted">Evaluación del evaluador:</h4>
+  
+  <div class="form-group row m-4" *ngIf="puntos">
+    <div class="col-md-12 ">
+      <label for="evaluacion1">1 - ¿Le presentó y acordó con Usted el Plan de Evaluación?</label>
+      <select
+        formControlName="evaluacion1"
+        id="evaluacion1"
+        class="form-control">
+        <option [value]="item.puntos" *ngFor="let item of puntos">
+                    {{ item.texto }}
+                  </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row m-4" *ngIf="puntos">
+    <div class="col-md-12 ">
+      <label for="evaluacion2">2 - ¿Recibió retroalimentación de los resultados de su evaluación?:</label>
+      <select
+        formControlName="evaluacion2"
+        id="evaluacion2"
+        class="form-control">
+        <option [value]="item.puntos" *ngFor="let item of puntos">
+                    {{ item.texto }}
+                  </option>
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group row m-4" *ngIf="puntos">
+    <div class="col-md-12 ">
+      <label for="evaluacion3">3 - ¿El evaluador atendió todas sus dudas?:</label>
+      <select
+        formControlName="evaluacion3"
+        id="evaluacion3"
+        class="form-control">
+        <option [value]="item.puntos" *ngFor="let item of puntos">
+                    {{ item.texto }}
+                  </option>
+      </select>
+    </div>
+  </div>
+
+
+            <div class="form-group row m-4 mt-4">
+                <div class="col-md-12">
+                    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Actualizar</button>
+                </div>
+            </div>
+          </form>
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
